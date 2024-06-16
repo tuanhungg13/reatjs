@@ -1,0 +1,30 @@
+{
+    "employee": [
+        {
+            "id": 1,
+            "name": " Hardythomashardy",
+            "email": "@mail.com",
+            "address": "89 Chiaroscuro Rd, Portland, USA",
+            "phone": "(171) 555-2222"
+        },
+        {
+            "id": 2,
+            "name": " Hasdsd23434234rdythomashardy",
+            "email": "@mail.com",
+            "address": "89 Chiaroscuro Rd, Portland, USA",
+            "phone": "(171) 555-2222"
+        },
+        {
+            "name": " Hardythomashardy",
+            "email": "@342443mail.com",
+            "address": "89 Chiaroscuro Rd, Portland, USA",
+            "phone": "(171) 555-2222"
+        },
+        {
+            "name": " Hardythomashardy",
+            "email": "@mail.com",
+            "address": "89 Chiaroscuro Rd, Portland, USA",
+            "phone": "(171) 555-2222"
+        }
+    ]
+}

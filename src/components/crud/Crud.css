@@ -1,0 +1,4 @@
+.content-task td,
+th {
+    border: none !important;
+}

@@ -1,0 +1,34 @@
+{
+    "list-task": [
+        {
+            "id": 1,
+            "task": "Go to gym",
+            "priority": "High",
+            "state": "to do"
+        },
+        {
+            "id": 2,
+            "task": "Go to market",
+            "priority": "Medium",
+            "state": "in progress"
+        },
+        {
+            "id": 3,
+            "task": "Read a book",
+            "priority": "High",
+            "state": "to do"
+        },
+        {
+            "id": 4,
+            "task": "Watch TV",
+            "priority": "Low",
+            "state": "done"
+        },
+        {
+            "id": 5,
+            "task": "abcxyz",
+            "priority": "High",
+            "state": "to do"
+        }
+    ]
+}
