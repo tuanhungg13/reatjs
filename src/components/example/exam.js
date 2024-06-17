@@ -23,8 +23,23 @@ const TaskList = () => {
         setAction("add")
         setOpenAddEmployee(true);
     }
+    const handleCloseModal = () => {
+        setOpenAddEmployee(false);
+        setAction('')
+        setId('')
+        setName('');
+        setEmail('');
+        setAddress('');
+        setPhone("")
+        const notError = {
+            name: '',
+            email: ''
+        }
+        setError(notError)
+    }
     const handleAddNewEmployee = () => {
-        if (Validate()) {
+        const checkValidate = Validate();
+        if (checkValidate) {
             const newEmployee = {
                 id: data.length + 1,
                 name: name,
@@ -33,12 +48,10 @@ const TaskList = () => {
                 phone: phone
             }
             setData([...data, newEmployee])
-            setName('');
-            setEmail('');
-            setAddress('');
-            setPhone("")
+            handleCloseModal()
+            setOpenAddEmployee(false)
         }
-        else return;
+        return
     }
 
     const Validate = () => {
@@ -64,6 +77,7 @@ const TaskList = () => {
         return valid;
     }
     const handleEdit = (item) => {
+        setOpenAddEmployee(true)
         setAction('edit')
         setId(item.id)
         setName(item.name);
@@ -83,10 +97,7 @@ const TaskList = () => {
         }
         dataCoppy[index] = editEmployee;
         setData(dataCoppy)
-        setName('');
-        setEmail('');
-        setAddress('');
-        setPhone("")
+        handleCloseModal()
 
     }
 
@@ -112,46 +123,48 @@ const TaskList = () => {
                                 </div>
                             </div>
                         </div>
-                        <div id="addEmployeeModal" className={`${openAddEmployee ? "d-block" : "d-none"}`}>
-                            <div className="modal-dialog">
-                                <div className="modal-content">
-                                    <form>
-                                        <div className="modal-header">
-                                            <h4 className="modal-title">Add Employee</h4>
-                                            <button onClick={() => { setOpenAddEmployee(false) }} type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        </div>
-                                        <div className="modal-body">
-                                            <div className="form-group">
-                                                <label>Name</label>
-                                                <input type="text" className="form-control" required value={name} onChange={(event) => { setName(event.target.value) }} />
+                        {openAddEmployee && (
+                            <div id="addEmployeeModal" className="modal d-block" >
+                                <div className="modal-dialog">
+                                    <div className="modal-content">
+                                        <form>
+                                            <div className="modal-header">
+                                                <h4 className="modal-title">Add Employee</h4>
+                                                <button onClick={() => { handleCloseModal() }} type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                             </div>
-                                            {error.name && <div>{error.name}</div>}
-                                            <div className="form-group">
-                                                <label>Email</label>
-                                                <input type="email" className="form-control" required value={email} onChange={(event) => { setEmail(event.target.value) }} />
+                                            <div className="modal-body">
+                                                <div className="form-group">
+                                                    <label>Name</label>
+                                                    <input type="text" className="form-control" required value={name} onChange={(event) => { setName(event.target.value) }} />
+                                                </div>
+                                                {error.name && <div>{error.name}</div>}
+                                                <div className="form-group">
+                                                    <label>Email</label>
+                                                    <input type="email" className="form-control" value={email} onChange={(event) => { setEmail(event.target.value) }} />
+                                                </div>
+                                                {error.email && <div>{error.email}</div>}
+                                                <div className="form-group">
+                                                    <label>Address</label>
+                                                    <textarea className="form-control" required value={address} onChange={(event) => { setAddress(event.target.value) }}></textarea>
+                                                </div>
+                                                <div className="form-group">
+                                                    <label>Phone</label>
+                                                    <input type="text" className="form-control" required value={phone} onChange={(event) => { setPhone(event.target.value) }} />
+                                                </div>
                                             </div>
-                                            {error.name && <div>{error.email}</div>}
-                                            <div className="form-group">
-                                                <label>Address</label>
-                                                <textarea className="form-control" required value={address} onChange={(event) => { setAddress(event.target.value) }}></textarea>
+                                            <div className="modal-footer">
+                                                <button onClick={() => { handleCloseModal() }} >Cancel</button>
+                                                {action === 'add' ?
+                                                    <button onClick={() => { handleAddNewEmployee() }}>Add</button>
+                                                    :
+                                                    <button onClick={() => { confirmEdit() }}>Edit</button>
+                                                }
                                             </div>
-                                            <div className="form-group">
-                                                <label>Phone</label>
-                                                <input type="text" className="form-control" required value={phone} onChange={(event) => { setPhone(event.target.value) }} />
-                                            </div>
-                                        </div>
-                                        <div className="modal-footer">
-                                            <button onClick={() => { setOpenAddEmployee(false) }} >Cancel</button>
-                                            {action === 'add' ?
-                                                <button onClick={() => { handleAddNewEmployee() }}>Add</button>
-                                                :
-                                                <button onClick={() => { confirmEdit() }}>Edit</button>
-                                            }
-                                        </div>
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                            </div>)
+                        }
                         <table className="table table-striped table-hover">
                             <thead>
                                 <tr>
@@ -205,61 +218,6 @@ const TaskList = () => {
                                 <li className="page-item"><a href="#" className="page-link">Next</a></li>
                             </ul>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="editEmployeeModal" className="modal fade">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <form>
-                            <div className="modal-header">
-                                <h4 className="modal-title">Edit Employee</h4>
-                                <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            </div>
-                            <div className="modal-body">
-                                <div className="form-group">
-                                    <label>Name</label>
-                                    <input type="text" className="form-control" required value={name} onChange={(event) => { setName(event.target.value) }} />
-                                </div>
-                                <div className="form-group">
-                                    <label>Email</label>
-                                    <input type="email" className="form-control" required value={email} onChange={(event) => { setEmail(event.target.value) }} />
-                                </div>
-                                <div className="form-group">
-                                    <label>Address</label>
-                                    <textarea className="form-control" required value={address} onChange={(event) => { setAddress(event.target.value) }}></textarea>
-                                </div>
-                                <div className="form-group">
-                                    <label>Phone</label>
-                                    <input type="text" className="form-control" required value={phone} onChange={(event) => { setPhone(event.target.value) }} />
-                                </div>
-                            </div>
-                            <div className="modal-footer">
-                                <button>Cancel</button>
-                                <button>Add</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div id="deleteEmployeeModal" className="modal fade">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <form>
-                            <div className="modal-header">
-                                <h4 className="modal-title">Delete Employee</h4>
-                                <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            </div>
-                            <div className="modal-body">
-                                <p>Are you sure you want to delete these Records?</p>
-                                <p className="text-warning"><small>This action cannot be undone.</small></p>
-                            </div>
-                            <div className="modal-footer">
-                                <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel" />
-                                <input type="submit" className="btn btn-danger" value="Delete" />
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
