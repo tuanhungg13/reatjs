@@ -5,10 +5,19 @@ import dataProduct from './product.json'
 const MilkTeaShop = () => {
     const [data, setData] = useState([])
     const [store, setStore] = useState([])
+    const [openTopping, setOpenTopping] = useState(false)
     useEffect(() => {
         setData(dataProduct.product)
         setStore(dataProduct.store)
     }, [])
+
+    const handleOpenTopping = () => {
+        if (openTopping === true) {
+            return setOpenTopping(false)
+        }
+        setOpenTopping(true);
+
+    }
     return (
         <div className='milkTea-page'>
             <div className='row'>
@@ -33,7 +42,9 @@ const MilkTeaShop = () => {
                 <div className='content-right col-10'>
                     <h1 className='text-center my-5'>Store 1 Menu</h1>
                     <div className='actions d-flex justify-content-between'>
-                        <button className='btn btn-primary w-25'>Filter</button>
+                        <button className='btn btn-primary w-25'
+                            onClick={() => { handleOpenTopping() }}
+                        >Filter</button>
                         <div className='d-flex ' style={{ marginRight: '150px' }}>
                             <label className='me-5 d-flex align-items-center' style={{ width: '100px' }}>Sort By</label>
                             <select class="form-select" aria-label="Default select example">
@@ -44,43 +55,45 @@ const MilkTeaShop = () => {
                             </select>
                         </div>
                     </div>
-                    <div className='toppings mt-3'>
-                        <h3>Topping:</h3>
-                        <ul className="d-flex justify-content-between list-unstyled flex-wrap ms-5 me-5">
-                            <li>
-                                <input type='checkbox' /> Milk Foarm
-                            </li>
-                            <li>
-                                <input type='checkbox' /> Milk Foarm
-                            </li>
-                            <li>
-                                <input type='checkbox' /> Milk Foarm
-                            </li>
-                            <li>
-                                <input type='checkbox' /> Milk Foarm
-                            </li>
-                            <li>
-                                <input type='checkbox' /> Milk Foarm
-                            </li>
-                            <li>
-                                <input type='checkbox' /> Milk Foarm
-                            </li>
-                            <li>
-                                <input type='checkbox' /> Milk Foarm
-                            </li>
-                            <li>
-                                <input type='checkbox' /> Milk Foarm
-                            </li>
-                            <li>
-                                <input type='checkbox' /> Milk Foarm
-                            </li>
-                            <li>
-                                <input type='checkbox' /> Milk Foarm
-                            </li>
-                        </ul>
-                    </div>
+                    {openTopping &&
+                        <div className='toppings mt-3'>
+                            <h3>Topping:</h3>
+                            <ul className="d-flex justify-content-between list-unstyled flex-wrap ms-5 me-5">
+                                <li>
+                                    <input type='checkbox' /> Milk Foarm
+                                </li>
+                                <li>
+                                    <input type='checkbox' /> Milk Foarm
+                                </li>
+                                <li>
+                                    <input type='checkbox' /> Milk Foarm
+                                </li>
+                                <li>
+                                    <input type='checkbox' /> Milk Foarm
+                                </li>
+                                <li>
+                                    <input type='checkbox' /> Milk Foarm
+                                </li>
+                                <li>
+                                    <input type='checkbox' /> Milk Foarm
+                                </li>
+                                <li>
+                                    <input type='checkbox' /> Milk Foarm
+                                </li>
+                                <li>
+                                    <input type='checkbox' /> Milk Foarm
+                                </li>
+                                <li>
+                                    <input type='checkbox' /> Milk Foarm
+                                </li>
+                                <li>
+                                    <input type='checkbox' /> Milk Foarm
+                                </li>
+                            </ul>
+                        </div>
+                    }
 
-                    <div className='container-product d-flex flex-wrap'>
+                    <div className='container-product d-flex flex-wrap mt-5'>
                         {data.map((item, index) => {
                             return (
                                 <div className='content-product w-25 me-5 ms-3'>
