@@ -1,0 +1,46 @@
+{
+    "store": [
+        {
+            "id": 1,
+            "name": "Ding Tea"
+        },
+        {
+            "id": 2,
+            "name": "Young Tea"
+        },
+        {
+            "id": 3,
+            "name": "ádssdsad Tea"
+        },
+        {
+            "id": 4,
+            "name": "Ding Tea"
+        }
+    ],
+    "product": [
+        {
+            "id": 1,
+            "name": "Royal Milk Tea",
+            "price": 4.8,
+            "toppings": "Milk foam, white pearl"
+        },
+        {
+            "id": 1,
+            "name": "Royal Milk Tea",
+            "price": 4.8,
+            "toppings": "Milk foam, white pearl"
+        },
+        {
+            "id": 1,
+            "name": "Royal Milk Tea",
+            "price": 4.8,
+            "toppings": "Milk foam, white pearl"
+        },
+        {
+            "id": 1,
+            "name": "Royal Milk Tea",
+            "price": 4.8,
+            "toppings": "Milk foam, white pearl"
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+.nav-pills a {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    text-decoration-line: none;
+    margin-bottom: 30px;
+}
+
+.nav-pills a:hover {
+    background-color: #d7d7d7;
+    color: #000;
+}
+
+
+.toppings li {
+    width: 200px;
+    margin-top: 20px;
+}
+
+.toppings input {
+    font-size: 20px;
+}
